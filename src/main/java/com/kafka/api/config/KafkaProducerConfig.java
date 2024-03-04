@@ -1,5 +1,6 @@
 package com.kafka.api.config;
 
+import com.kafka.api.constant.AppConstant;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
@@ -18,7 +19,7 @@ public class KafkaProducerConfig {
 
     @Bean
     public NewTopic createTopic() {
-        return new NewTopic("javatechie-demo", 3, (short) 1);
+        return new NewTopic(AppConstant.TOPIC_NAME, AppConstant.NUMBER_OF_PARTITION, AppConstant.NUMBER_OF_REPLICATION_FACTOR);
     }
 
     @Bean
