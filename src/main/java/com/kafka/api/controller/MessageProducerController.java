@@ -1,6 +1,6 @@
 package com.kafka.api.controller;
 
-import com.kafka.api.service.KafkaMessagePublisher;
+import com.kafka.api.producer.MessageProducer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,18 +10,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/producer-app")
-public class EventController {
+@RequestMapping("/api/v1/producer")
+public class MessageProducerController {
 
 
     @Autowired
-    private KafkaMessagePublisher publisher;
+    private MessageProducer messageProducer;
 
     @GetMapping("/publish/{message}")
     public ResponseEntity<?> publishMessage(@PathVariable String message) {
         try {
-            for (int i = 0; i <= 10; i++) {
-                publisher.sendMessageToTopic(message + " : " + i);
+            for (int i = 0; i <= 100; i++) {
+                messageProducer.sendMessage(message + " : " + i);
             }
             return ResponseEntity.ok("message published successfully ..");
         } catch (Exception ex) {
