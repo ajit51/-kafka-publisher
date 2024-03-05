@@ -13,7 +13,7 @@ public class MessageProducer {
     private static final Logger LOGGER = LogManager.getLogger(MessageProducer.class);
 
     @Autowired
-    private KafkaTemplate<String, String> kafkaTemplate;
+    private KafkaTemplate<String, Object> kafkaTemplate;
 
     public void sendMessage(String message) {
         LOGGER.info(String.format("Sending message to " + AppConstant.TOPIC_NAME + " Topic:: %s", message));
